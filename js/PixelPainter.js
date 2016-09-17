@@ -5,23 +5,8 @@
 let pixelPainter = document.getElementById('pixelPainter');
 pixelPainter.className = 'clearfix';
 
-
-
-// let pixelCanvas = document.createElement('div');
-// pixelCanvas.id = 'pixelCanvas';
-// pixelCanvas.style.width = '400px';
-// pixelCanvas.style.height = '400px';
-// //pixelCanvas.innerHTML = 'CANVAS';
-// pixelPainter.appendChild(pixelCanvas);
-
-
-
-// canvas
-
-
-
 function PixelPainter(width, height){
-  let gridCellPx = 20;
+  let gridCellPx = 10;
   let colorCellPx = 30;
   let colorSwatchColumns = 6;
   let colorSwatchRows = 9;
@@ -71,11 +56,20 @@ function PixelPainter(width, height){
     eraseButton.id = 'eraseButton';
     eraseButton.innerHTML = 'erase';
     buttonContainer.appendChild(eraseButton);
+    eraseButton.addEventListener('click', function(){
+      selectedColor = 'transparent';
+    });
 
     let clearButton = document.createElement('button');
     clearButton.id = 'clearButton';
     clearButton.innerHTML = 'clear';
     buttonContainer.appendChild(clearButton);
+    clearButton.addEventListener('click', function(){
+      let gridCell = document.getElementsByClassName('gridCell');
+      for (var i = 0; i < gridCell.length; i++) {
+        gridCell[i].style.backgroundColor = 'transparent';
+      }
+    });
 
     sideBar.appendChild(buttonContainer);
     // canvas
@@ -85,45 +79,30 @@ function PixelPainter(width, height){
     pixelCanvas.style.height = height * gridCellPx +'px';
     pixelPainter.appendChild(pixelCanvas);
 
-
+    let startDrag = false;
     for (var i = 1; i < ((width * height) + 1); i++) {
       let gridCell = document.createElement('div');
       gridCell.className = 'gridCell';
       gridCell.id = 'cell'+i;
-      gridCell.style.border = '1px solid black';
+      gridCell.style.border = '1px dotted grey';
       gridCell.style.width = gridCellPx + 'px';
       gridCell.style.height = gridCellPx + 'px';
       pixelCanvas.appendChild(gridCell);
       gridCell.addEventListener('click', function() {
         gridCell.style.backgroundColor = selectedColor;
-      })
+        startDrag = !startDrag;
+      });
+      gridCell.addEventListener('mouseenter', function(){
+        if (startDrag) {
+          gridCell.style.backgroundColor = selectedColor;
+        }
+      });
     }
-
-
-
-
-
-
-
-
-
-
-
   }
 }
 
-PixelPainter(30,20);
+PixelPainter(50,40);
 
-
-// let n =9;
-
-// for (var i = 1; i < n+1; i++) {
-//   let colorCell = document.createElement('div');
-//   colorCell.className = 'colorCell';
-//   colorCell.innerHTML = i;
-//   colorCell.style.border = 'solid black';
-//   colorSwatch.appendChild(colorCell);
-// }
 
 
 
