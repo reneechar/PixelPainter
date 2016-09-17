@@ -6,7 +6,7 @@ let pixelPainter = document.getElementById('pixelPainter');
 pixelPainter.className = 'clearfix';
 
 function PixelPainter(width, height){
-  let gridCellPx = 20;
+  let gridCellPx = 10;
   let colorCellPx = 30;
   let colorSwatchColumns = 6;
   let colorSwatchRows = 9;
@@ -79,23 +79,29 @@ function PixelPainter(width, height){
     pixelCanvas.style.height = height * gridCellPx +'px';
     pixelPainter.appendChild(pixelCanvas);
 
-
+    let startDrag = false;
     for (var i = 1; i < ((width * height) + 1); i++) {
       let gridCell = document.createElement('div');
       gridCell.className = 'gridCell';
       gridCell.id = 'cell'+i;
-      gridCell.style.border = '1px solid black';
+      gridCell.style.border = '1px dotted grey';
       gridCell.style.width = gridCellPx + 'px';
       gridCell.style.height = gridCellPx + 'px';
       pixelCanvas.appendChild(gridCell);
       gridCell.addEventListener('click', function() {
         gridCell.style.backgroundColor = selectedColor;
+        startDrag = !startDrag;
+      });
+      gridCell.addEventListener('mouseenter', function(){
+        if (startDrag) {
+          gridCell.style.backgroundColor = selectedColor;
+        }
       });
     }
   }
 }
 
-PixelPainter(30,20);
+PixelPainter(50,40);
 
 
 
