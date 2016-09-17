@@ -1,0 +1,17 @@
+#pixelCanvas .gridCell {
+  float: left;
+  box-sizing: border-box;
+}
+
+
+/*#colorSwatch {
+  width: 20%;
+  height: 250px;
+  float: left;
+}
+
+#colorSwatch .colorCell {
+  width: 30%;
+  height: 30%;
+  float: left;
+}*/
