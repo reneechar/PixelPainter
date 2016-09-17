@@ -21,9 +21,13 @@
   margin: 10px;
 }
 
+#sideBar {
+  margin: 10px;
+}
+
 #buttonContainer {
   float: left;
-
+  margin: 10px;
 }
 
 .clearfix:after {

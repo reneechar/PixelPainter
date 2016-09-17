@@ -37,12 +37,16 @@ function PixelPainter(width, height){
   if (typeof width !== 'number' || typeof height !== 'number') {
     alert('width and height have to be a number');
   } else {
-
+    // sidebar
+    let sideBar = document.createElement('div');
+    sideBar.id = 'sideBar';
+    pixelPainter.appendChild(sideBar);
+    // color palette
     let colorSwatch = document.createElement('div');
     colorSwatch.id = 'colorSwatch';
     colorSwatch.style.width = colorSwatchColumns * cellPx +'px';
     colorSwatch.style.height = colorSwatchRows * cellPx +'px';
-    pixelPainter.appendChild(colorSwatch);
+    sideBar.appendChild(colorSwatch);
 
     for (var i = 1; i < 55; i++) {
       let colorCell = document.createElement('div');
@@ -54,7 +58,22 @@ function PixelPainter(width, height){
       colorCell.style.backgroundColor = colorPalette[i-1];
       colorSwatch.appendChild(colorCell);
     }
+    // buttons
+    let buttonContainer = document.createElement('div');
+    buttonContainer.id = 'buttonContainer';
 
+    let eraseButton = document.createElement('button');
+    eraseButton.id = 'eraseButton';
+    eraseButton.innerHTML = 'erase';
+    buttonContainer.appendChild(eraseButton);
+
+    let clearButton = document.createElement('button');
+    clearButton.id = 'clearButton';
+    clearButton.innerHTML = 'clear';
+    buttonContainer.appendChild(clearButton);
+
+    sideBar.appendChild(buttonContainer);
+    // canvas
     let pixelCanvas = document.createElement('div');
     pixelCanvas.id = 'pixelCanvas';
     pixelCanvas.style.width = width * cellPx +'px';
@@ -72,20 +91,7 @@ function PixelPainter(width, height){
       pixelCanvas.appendChild(gridCell);
     }
 
-    let buttonContainer = document.createElement('div');
-    buttonContainer.id = 'buttonContainer';
 
-    let eraseButton = document.createElement('button');
-    eraseButton.id = 'eraseButton';
-    eraseButton.innerHTML = 'erase';
-    buttonContainer.appendChild(eraseButton);
-
-    let clearButton = document.createElement('button');
-    clearButton.id = 'clearButton';
-    clearButton.innerHTML = 'clear';
-    buttonContainer.appendChild(clearButton);
-
-    pixelPainter.appendChild(buttonContainer);
 
 
 
