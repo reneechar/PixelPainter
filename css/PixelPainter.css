@@ -20,6 +20,19 @@
 #colorSwatch {
   margin: 10px;
 }
+
+#buttonContainer {
+  float: left;
+
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
 /*#colorSwatch {
   width: 20%;
   height: 250px;
