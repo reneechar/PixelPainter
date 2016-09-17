@@ -4,10 +4,7 @@
 
 let pixelPainter = document.getElementById('pixelPainter');
 
-// let colorSwatch = document.createElement('div');
-// colorSwatch.id = 'colorSwatch';
-// //colorSwatch.innerHTML = 'color Swatch';
-// pixelPainter.appendChild(colorSwatch);
+
 
 // let pixelCanvas = document.createElement('div');
 // pixelCanvas.id = 'pixelCanvas';
@@ -32,9 +29,28 @@ let pixelPainter = document.getElementById('pixelPainter');
 
 function PixelPainter(width, height){
   let cellPx = 30;
+  let colorSwatchColumns = 6;
+  let colorSwatchRows = 9;
+
   if (typeof width !== 'number' || typeof height !== 'number') {
     alert('width and height have to be a number');
   } else {
+
+    let colorSwatch = document.createElement('div');
+    colorSwatch.id = 'colorSwatch';
+    colorSwatch.style.width = colorSwatchColumns * cellPx +'px';
+    colorSwatch.style.height = colorSwatchRows * cellPx +'px';
+    pixelPainter.appendChild(colorSwatch);
+
+    for (var i = 1; i < 55; i++) {
+      let colorCell = document.createElement('div');
+      colorCell.className = 'colors';
+      colorCell.id = 'd';
+      colorCell.style.border = 'solid black';
+      colorCell.style.width = cellPx + 'px';
+      colorCell.style.height = cellPx + 'px';
+      colorSwatch.appendChild(colorCell);
+    }
 
     let pixelCanvas = document.createElement('div');
     pixelCanvas.id = 'pixelCanvas';
@@ -46,11 +62,19 @@ function PixelPainter(width, height){
     for (var i = 1; i < ((width * height) + 1); i++) {
       let gridCell = document.createElement('div');
       gridCell.className = 'gridCell';
+      gridCell.id = 'cell'+i;
       gridCell.style.border = 'solid black';
       gridCell.style.width = cellPx + 'px';
       gridCell.style.height = cellPx + 'px';
       pixelCanvas.appendChild(gridCell);
     }
+
+
+
+
+
+
+
   }
 }
 

@@ -1,9 +1,25 @@
+#pixelPainter > div {
+  /*display: inline-block;*/
+  float: left;
+}
+
 #pixelCanvas .gridCell {
   float: left;
   box-sizing: border-box;
 }
 
+#colorSwatch .colors {
+  float: left;
+  box-sizing: border-box;
+}
 
+#pixelCanvas {
+  margin: 10px;
+}
+
+#colorSwatch {
+  margin: 10px;
+}
 /*#colorSwatch {
   width: 20%;
   height: 250px;
