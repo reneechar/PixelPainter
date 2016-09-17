@@ -5,7 +5,6 @@
 let pixelPainter = document.getElementById('pixelPainter');
 pixelPainter.className = 'clearfix';
 
-
 function PixelPainter(width, height){
   let gridCellPx = 20;
   let colorCellPx = 30;
@@ -21,13 +20,6 @@ function PixelPainter(width, height){
       '3366FF','0000FF','0000CC','000099','000066','CCCC99',
       '9933FF','9900CC','663399','660099','330066','9999CC',
       'FF00FF','FF0099','CC0099','990066','660066','666699'];
-
-  // function clear(){
-  //   //for (var i = 1; i < ((width * height) + 1); i++) {
-  //     let gridCell = document.getElementByClass('gridCell');
-  //     gridCell.style.backgroundColor = 'transparent';
-  //     //}
-  // }
 
   if (typeof width !== 'number' || typeof height !== 'number') {
     alert('width and height have to be a number');
@@ -64,7 +56,9 @@ function PixelPainter(width, height){
     eraseButton.id = 'eraseButton';
     eraseButton.innerHTML = 'erase';
     buttonContainer.appendChild(eraseButton);
-
+    eraseButton.addEventListener('click', function(){
+      selectedColor = 'transparent';
+    });
 
     let clearButton = document.createElement('button');
     clearButton.id = 'clearButton';
@@ -98,7 +92,6 @@ function PixelPainter(width, height){
         gridCell.style.backgroundColor = selectedColor;
       });
     }
-
   }
 }
 
