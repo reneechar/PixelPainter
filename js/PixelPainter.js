@@ -21,9 +21,11 @@ pixelPainter.className = 'clearfix';
 
 
 function PixelPainter(width, height){
-  let cellPx = 30;
+  let gridCellPx = 20;
+  let colorCellPx = 30;
   let colorSwatchColumns = 6;
   let colorSwatchRows = 9;
+  let selectedColor;
   let colorPalette = ['CC3333','FF0000','CC0000','990000','660000','FFFFFF',
       'FF6600','FF3300','CC3300','993300','663300','000000',
       'FFFF33','FFFF00','FFCC00','CC9900','996633','333333',
@@ -44,19 +46,22 @@ function PixelPainter(width, height){
     // color palette
     let colorSwatch = document.createElement('div');
     colorSwatch.id = 'colorSwatch';
-    colorSwatch.style.width = colorSwatchColumns * cellPx +'px';
-    colorSwatch.style.height = colorSwatchRows * cellPx +'px';
+    colorSwatch.style.width = colorSwatchColumns * colorCellPx +'px';
+    colorSwatch.style.height = colorSwatchRows * colorCellPx +'px';
     sideBar.appendChild(colorSwatch);
 
     for (var i = 1; i < 55; i++) {
       let colorCell = document.createElement('div');
       colorCell.className = 'colors';
       colorCell.id = colorPalette[i-1];
-      colorCell.style.border = 'solid black';
-      colorCell.style.width = cellPx + 'px';
-      colorCell.style.height = cellPx + 'px';
+      colorCell.style.border = '1px solid black';
+      colorCell.style.width = colorCellPx + 'px';
+      colorCell.style.height = colorCellPx + 'px';
       colorCell.style.backgroundColor = colorPalette[i-1];
       colorSwatch.appendChild(colorCell);
+      colorCell.addEventListener('click', function() {
+        selectedColor = colorCell.id;
+      });
     }
     // buttons
     let buttonContainer = document.createElement('div');
@@ -76,8 +81,8 @@ function PixelPainter(width, height){
     // canvas
     let pixelCanvas = document.createElement('div');
     pixelCanvas.id = 'pixelCanvas';
-    pixelCanvas.style.width = width * cellPx +'px';
-    pixelCanvas.style.height = height * cellPx +'px';
+    pixelCanvas.style.width = width * gridCellPx +'px';
+    pixelCanvas.style.height = height * gridCellPx +'px';
     pixelPainter.appendChild(pixelCanvas);
 
 
@@ -85,11 +90,16 @@ function PixelPainter(width, height){
       let gridCell = document.createElement('div');
       gridCell.className = 'gridCell';
       gridCell.id = 'cell'+i;
-      gridCell.style.border = 'solid black';
-      gridCell.style.width = cellPx + 'px';
-      gridCell.style.height = cellPx + 'px';
+      gridCell.style.border = '1px solid black';
+      gridCell.style.width = gridCellPx + 'px';
+      gridCell.style.height = gridCellPx + 'px';
       pixelCanvas.appendChild(gridCell);
+      gridCell.addEventListener('click', function() {
+        gridCell.style.backgroundColor = selectedColor;
+      })
     }
+
+
 
 
 
@@ -102,7 +112,7 @@ function PixelPainter(width, height){
   }
 }
 
-PixelPainter(10,10);
+PixelPainter(30,20);
 
 
 // let n =9;
