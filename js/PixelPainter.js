@@ -22,6 +22,13 @@ function PixelPainter(width, height){
       '9933FF','9900CC','663399','660099','330066','9999CC',
       'FF00FF','FF0099','CC0099','990066','660066','666699'];
 
+  // function clear(){
+  //   //for (var i = 1; i < ((width * height) + 1); i++) {
+  //     let gridCell = document.getElementByClass('gridCell');
+  //     gridCell.style.backgroundColor = 'transparent';
+  //     //}
+  // }
+
   if (typeof width !== 'number' || typeof height !== 'number') {
     alert('width and height have to be a number');
   } else {
@@ -58,10 +65,17 @@ function PixelPainter(width, height){
     eraseButton.innerHTML = 'erase';
     buttonContainer.appendChild(eraseButton);
 
+
     let clearButton = document.createElement('button');
     clearButton.id = 'clearButton';
     clearButton.innerHTML = 'clear';
     buttonContainer.appendChild(clearButton);
+    clearButton.addEventListener('click', function(){
+      let gridCell = document.getElementsByClassName('gridCell');
+      for (var i = 0; i < gridCell.length; i++) {
+        gridCell[i].style.backgroundColor = 'transparent';
+      }
+    });
 
     sideBar.appendChild(buttonContainer);
     // canvas
@@ -82,7 +96,7 @@ function PixelPainter(width, height){
       pixelCanvas.appendChild(gridCell);
       gridCell.addEventListener('click', function() {
         gridCell.style.backgroundColor = selectedColor;
-      })
+      });
     }
 
   }
