@@ -1,7 +1,5 @@
 'use strict';
 
-//module.export
-
 let pixelPainter = document.getElementById('pixelPainter');
 pixelPainter.className = 'clearfix';
 
@@ -46,23 +44,40 @@ function PixelPainter(width, height){
       colorSwatch.appendChild(colorCell);
       colorCell.addEventListener('click', function() {
         selectedColor = colorCell.id;
+        selectedDisplay.style.backgroundColor = selectedColor;
       });
     }
     // buttons
     let buttonContainer = document.createElement('div');
     buttonContainer.id = 'buttonContainer';
 
+    let saveButton = document.createElement('button');
+    saveButton.id = 'saveButton';
+    saveButton.innerHTML = 'Save';
+    buttonContainer.appendChild(saveButton);
+    saveButton.addEventListener('click', function(){
+      var fileName = prompt('Type the file name want to save:');
+      domtoimage.toJpeg(document.getElementById('pixelCanvas'), { quality: 0.95 })
+        .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = fileName+'.jpeg'; //'my-image-name.jpeg';
+        link.href = dataUrl;
+        link.click();
+      });
+    });
+
     let eraseButton = document.createElement('button');
     eraseButton.id = 'eraseButton';
-    eraseButton.innerHTML = 'erase';
+    eraseButton.innerHTML = 'Erase';
     buttonContainer.appendChild(eraseButton);
     eraseButton.addEventListener('click', function(){
       selectedColor = 'transparent';
+      selectedDisplay.style.backgroundColor = selectedColor;
     });
 
     let clearButton = document.createElement('button');
     clearButton.id = 'clearButton';
-    clearButton.innerHTML = 'clear';
+    clearButton.innerHTML = 'Clear Canvas';
     buttonContainer.appendChild(clearButton);
     clearButton.addEventListener('click', function(){
       let gridCell = document.getElementsByClassName('gridCell');
@@ -70,8 +85,21 @@ function PixelPainter(width, height){
         gridCell[i].style.backgroundColor = 'transparent';
       }
     });
-
     sideBar.appendChild(buttonContainer);
+
+    //selected display
+    let titleSD = document.createElement('div');
+    titleSD.innerHTML = 'Selected Color';
+    sideBar.appendChild(titleSD);
+
+    let selectedDisplay = document.createElement('div');
+    selectedDisplay.id = 'displayBox';
+    sideBar.appendChild(selectedDisplay);
+    selectedDisplay.style.border = '1px solid black';
+    selectedDisplay.style.width = colorCellPx + 'px';
+    selectedDisplay.style.height = colorCellPx + 'px';
+
+
     // canvas
     let pixelCanvas = document.createElement('div');
     pixelCanvas.id = 'pixelCanvas';
@@ -102,6 +130,7 @@ function PixelPainter(width, height){
 }
 
 PixelPainter(50,40);
+
 
 
 
