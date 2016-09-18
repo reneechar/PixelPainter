@@ -56,10 +56,11 @@ function PixelPainter(width, height){
     saveButton.innerHTML = 'Save';
     buttonContainer.appendChild(saveButton);
     saveButton.addEventListener('click', function(){
+      var fileName = prompt('Type the file name want to save:');
       domtoimage.toJpeg(document.getElementById('pixelCanvas'), { quality: 0.95 })
         .then(function (dataUrl) {
         var link = document.createElement('a');
-        link.download = 'my-image-name.jpeg';
+        link.download = fileName+'.jpeg'; //'my-image-name.jpeg';
         link.href = dataUrl;
         link.click();
       });
