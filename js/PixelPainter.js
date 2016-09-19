@@ -3,8 +3,14 @@
 let pixelPainter = document.getElementById('pixelPainter');
 pixelPainter.className = 'clearfix';
 
-function PixelPainter(width, height){
-  let gridCellPx = 10;
+
+var cellSize = prompt('Please enter the pixel size of each box','20');
+var columns = prompt('Please enter the amount of columns you would to use','25');
+var rows = prompt('Please enter the amount of rows you would to use','25');
+PixelPainter(parseInt(columns), parseInt(rows), parseInt(cellSize));
+
+function PixelPainter(width, height, cellPx){
+  let gridCellPx = cellPx;
   let colorCellPx = 30;
   let colorSwatchColumns = 6;
   let colorSwatchRows = 9;
@@ -19,12 +25,15 @@ function PixelPainter(width, height){
       '9933FF','9900CC','663399','660099','330066','9999CC',
       'FF00FF','FF0099','CC0099','990066','660066','666699'];
 
+
   if (typeof width !== 'number' || typeof height !== 'number') {
-    alert('width and height have to be a number');
+    alert('width and height have to be a number! Refresh the page');
   } else {
+
     // sidebar
     let sideBar = document.createElement('div');
     sideBar.id = 'sideBar';
+    sideBar.style.backgroundColor = 'white';
     pixelPainter.appendChild(sideBar);
     // color palette
     let colorSwatch = document.createElement('div');
@@ -51,11 +60,11 @@ function PixelPainter(width, height){
     let buttonContainer = document.createElement('div');
     buttonContainer.id = 'buttonContainer';
 
-    let saveButton = document.createElement('button');
-    saveButton.id = 'saveButton';
-    saveButton.innerHTML = 'Save';
-    buttonContainer.appendChild(saveButton);
-    saveButton.addEventListener('click', function(){
+    let downloadButton = document.createElement('button');
+    downloadButton.id = 'downloadButton';
+    downloadButton.innerHTML = 'Download';
+    buttonContainer.appendChild(downloadButton);
+    downloadButton.addEventListener('click', function(){
       var fileName = prompt('Type the file name want to save:');
       domtoimage.toJpeg(document.getElementById('pixelCanvas'), { quality: 0.95 })
         .then(function (dataUrl) {
@@ -65,6 +74,14 @@ function PixelPainter(width, height){
         link.click();
       });
     });
+
+    // let saveButton = document.createElement('button');
+    // saveButton.id = 'saveButton';
+    // saveButton.innerHTML = 'Save';
+    // buttonContainer.appendChild(saveButton);
+    // saveButton.addEventListener('click', function(){
+      
+    // });
 
     let eraseButton = document.createElement('button');
     eraseButton.id = 'eraseButton';
@@ -90,6 +107,7 @@ function PixelPainter(width, height){
     //selected display
     let titleSD = document.createElement('div');
     titleSD.innerHTML = 'Selected Color';
+    titleSD.style.margin = '5px 0px 5px 10px';
     sideBar.appendChild(titleSD);
 
     let selectedDisplay = document.createElement('div');
@@ -105,6 +123,7 @@ function PixelPainter(width, height){
     pixelCanvas.id = 'pixelCanvas';
     pixelCanvas.style.width = width * gridCellPx +'px';
     pixelCanvas.style.height = height * gridCellPx +'px';
+    pixelCanvas.style.backgroundColor = 'white';
     pixelPainter.appendChild(pixelCanvas);
 
     let startDrag = false;
@@ -129,7 +148,6 @@ function PixelPainter(width, height){
   }
 }
 
-PixelPainter(50,40);
 
 
 

@@ -1,3 +1,17 @@
+* {
+  font-family: 'Futura', 'Lucida Grande', 'Arial';
+}
+h1 {
+  color: white;
+  margin: 10px;
+}
+
+body {
+  background-color: black;
+  background-image: url('http://s3.vidimg.popscreen.com/original/22/eG5iOTQ2MTI=_o_push-start-129---jeux-video-cinma-pixel-art-game-story.jpg')
+}
+
+
 #pixelPainter > div {
   /*display: inline-block;*/
   float: left;
@@ -34,6 +48,7 @@
   display: table;
   clear: both;
 }
+
 
 
 /*#colorSwatch {
