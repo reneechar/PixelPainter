@@ -75,13 +75,16 @@ function PixelPainter(width, height, cellPx){
       });
     });
 
-    // let saveButton = document.createElement('button');
-    // saveButton.id = 'saveButton';
-    // saveButton.innerHTML = 'Save';
-    // buttonContainer.appendChild(saveButton);
-    // saveButton.addEventListener('click', function(){
-      
-    // });
+    let saveButton = document.createElement('button');
+    saveButton.id = 'saveButton';
+    saveButton.innerHTML = 'Save';
+    buttonContainer.appendChild(saveButton);
+
+    let loadButton = document.createElement('button');
+    loadButton.id = 'loadButton';
+    loadButton.innerHTML = 'Load';
+    buttonContainer.appendChild(loadButton);
+    
 
     let eraseButton = document.createElement('button');
     eraseButton.id = 'eraseButton';
@@ -94,7 +97,7 @@ function PixelPainter(width, height, cellPx){
 
     let clearButton = document.createElement('button');
     clearButton.id = 'clearButton';
-    clearButton.innerHTML = 'Clear Canvas';
+    clearButton.innerHTML = 'Clear';
     buttonContainer.appendChild(clearButton);
     clearButton.addEventListener('click', function(){
       let gridCell = document.getElementsByClassName('gridCell');
@@ -107,7 +110,7 @@ function PixelPainter(width, height, cellPx){
     //selected display
     let titleSD = document.createElement('div');
     titleSD.innerHTML = 'Selected Color';
-    titleSD.style.margin = '5px 0px 5px 10px';
+    titleSD.id = 'titleSD';
     sideBar.appendChild(titleSD);
 
     let selectedDisplay = document.createElement('div');
