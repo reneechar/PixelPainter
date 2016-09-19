@@ -75,13 +75,47 @@ function PixelPainter(width, height, cellPx){
       });
     });
 
-    // let saveButton = document.createElement('button');
-    // saveButton.id = 'saveButton';
-    // saveButton.innerHTML = 'Save';
-    // buttonContainer.appendChild(saveButton);
-    // saveButton.addEventListener('click', function(){
-      
-    // });
+    let saveButton = document.createElement('button');
+    saveButton.id = 'saveButton';
+    saveButton.innerHTML = 'Save';
+    buttonContainer.appendChild(saveButton);
+    saveButton.addEventListener('click', function(){
+      let picStorage = {
+        width,
+        height,
+        cellPx,
+        colorArrIndex: [],
+        colorArrColors: []
+      };
+
+      for (var i = 1; i < ((width * height) + 1); i++) {
+        let elementList = document.querySelector('#cell'+ i);
+        if (elementList.style.backgroundColor !== ''){
+          picStorage.colorArrIndex.push(elementList.id);
+          picStorage.colorArrColors.push(elementList.style.backgroundColor);
+        }
+      }
+      localStorage.setItem('picStorage', JSON.stringify(picStorage));
+    });
+
+    let loadButton = document.createElement('button');
+    loadButton.id = 'loadButton';
+    loadButton.innerHTML = 'Load';
+    buttonContainer.appendChild(loadButton);
+    loadButton.addEventListener('click', function(){
+      let retrievedPic = localStorage.getItem('picStorage');
+      retrievedPic = JSON.parse(retrievedPic);
+      let newPixelPainter = document.querySelector('#pixelPainter');
+      while(newPixelPainter.hasChildNodes()){
+        newPixelPainter.removeChild(newPixelPainter.lastChild);
+      }
+      PixelPainter(parseInt(retrievedPic.width), parseInt(retrievedPic.height), parseInt(retrievedPic.cellPx));
+      for (var i = 0; i < retrievedPic.colorArrIndex.length; i++) {
+        let currentCell = document.querySelector('#'+retrievedPic.colorArrIndex[i]);
+        currentCell.style.backgroundColor = retrievedPic.colorArrColors[i];
+      }
+
+    });
 
     let eraseButton = document.createElement('button');
     eraseButton.id = 'eraseButton';
@@ -147,6 +181,7 @@ function PixelPainter(width, height, cellPx){
     }
   }
 }
+
 
 
 
