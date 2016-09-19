@@ -39,7 +39,11 @@ body {
   margin: 10px;
 }
 
-#buttonContainer, #displayBox {
+#buttonContainer {
+  margin: 10px;
+}
+
+#displayBox {
   margin: 10px;
 }
 
@@ -49,16 +53,3 @@ body {
   clear: both;
 }
 
-
-
-/*#colorSwatch {
-  width: 20%;
-  height: 250px;
-  float: left;
-}
-
-#colorSwatch .colorCell {
-  width: 30%;
-  height: 30%;
-  float: left;
-}*/
