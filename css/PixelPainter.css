@@ -19,7 +19,6 @@ button {
 	position: center;
 }
 
-
 #pixelPainter > div {
   /*display: inline-block;*/
   float: left;
@@ -63,21 +62,10 @@ button {
   margin: 10px;
 }
 
+
 .clearfix:after {
   content: "";
   display: table;
   clear: both;
 }
 
-
-/*#colorSwatch {
-  width: 20%;
-  height: 250px;
-  float: left;
-}
-
-#colorSwatch .colorCell {
-  width: 30%;
-  height: 30%;
-  float: left;
-}*/
